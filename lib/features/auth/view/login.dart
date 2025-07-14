@@ -94,7 +94,7 @@ class _LoginState extends State<Login> {
                 children: [
                   Image.asset("img/green_logo_text.png", width: 250,),
                   const Text(
-                    'Bem vindo(a) de volta',
+                    'Bem-vindo(a) de volta',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
