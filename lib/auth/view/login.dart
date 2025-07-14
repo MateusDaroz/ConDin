@@ -69,7 +69,7 @@ class _LoginState extends State<Login> {
                       ),
                       shadowColor: Colors.transparent
                     ),
-                    child: const Text('Tentar novamente', style: TextStyle(color: Colors.white, fontSize: 16),),
+                    child: const Text('Tentar novamente', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
                   ),
                 )
               ],
@@ -171,6 +171,7 @@ class _LoginState extends State<Login> {
                           children: [
                             Checkbox(
                               value: _stayConnected,
+                              activeColor: Color.fromRGBO(0, 200, 74, 1),
                               onChanged: (value) {
                                 setState(() {
                                   _stayConnected = value ?? false;
@@ -184,7 +185,7 @@ class _LoginState extends State<Login> {
                         ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              
+                              _modalCounter=0;
                             });
                             if (_formKey.currentState!.validate()) {
               
@@ -200,7 +201,7 @@ class _LoginState extends State<Login> {
                             ),
                             shadowColor: Colors.transparent
                           ),
-                          child: const Text('Entrar', style: TextStyle(color: Colors.white, fontSize: 16),),
+                          child: const Text('Entrar', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
                         ),
                         const SizedBox(height: 16),
                         ElevatedButton(
@@ -223,7 +224,7 @@ class _LoginState extends State<Login> {
                             ),
                             shadowColor: Colors.transparent
                           ),
-                          child: const Text('Esqueci minha senha', style: TextStyle(color: Color.fromRGBO(0, 200, 74, 1), fontSize: 16),),
+                          child: const Text('Esqueci minha senha', style: TextStyle(color: Color.fromRGBO(0, 200, 74, 1), fontSize: 16, fontWeight: FontWeight.bold),),
                         ),
                         const SizedBox(height: 8),
                       ],
@@ -235,7 +236,7 @@ class _LoginState extends State<Login> {
                         
                       });
                     },
-                    child: const Text("Não possuo uma conta"),
+                    child: const Text("Não possuo uma conta",style: TextStyle(color: Color.fromRGBO(0, 200, 74, 1), fontWeight: FontWeight.w600)),
                   ),
                 ]
               )
