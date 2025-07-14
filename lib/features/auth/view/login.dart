@@ -1,3 +1,4 @@
+import 'package:condin/features/auth/view/register.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -233,7 +234,7 @@ class _LoginState extends State<Login> {
                   TextButton(
                     onPressed: () {
                       setState(() {
-                        
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => Register()));
                       });
                     },
                     child: const Text("Não possuo uma conta",style: TextStyle(color: Color.fromRGBO(0, 200, 74, 1), fontWeight: FontWeight.w600)),
