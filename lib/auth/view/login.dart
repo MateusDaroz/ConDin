@@ -42,13 +42,13 @@ class _LoginState extends State<Login> {
                     color: Color.fromRGBO(218, 219, 220, 1),
                     borderRadius: BorderRadius.circular(100)
                   ),
-                  width: 85,
-                  height: 10,
-                  margin: EdgeInsets.only(top: 5),
+                  width: 70,
+                  height: 5,
+                  margin: EdgeInsets.only(top: 10),
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: Text(text, style: TextStyle(fontSize: 18, color: Color.fromRGBO(52, 58, 64, 1)), textAlign: TextAlign.justify,),
+                  child: Text(text, style: TextStyle(fontSize: 18, color: Color.fromRGBO(52, 58, 64, 1))),
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 15),
