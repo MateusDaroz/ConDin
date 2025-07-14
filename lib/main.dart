@@ -2,10 +2,18 @@ import 'package:condin/features/auth/view/login.dart';
 import 'package:condin/features/auth/view/register.dart';
 import 'package:condin/features/auth/view/splashscreen.dart';
 import 'package:condin/features/auth/view/welcome.dart';
+import 'package:condin/features/themes/theme.dart';
+import 'package:condin/features/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,9 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(0, 200, 74, 1)),
-      ),
+      theme: Provider.of<ThemeProvider>(context).themeData,
       debugShowCheckedModeBanner: false,
       home: Splashscreen()
     );
