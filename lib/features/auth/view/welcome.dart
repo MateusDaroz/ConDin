@@ -1,4 +1,5 @@
 import 'package:condin/features/auth/view/login.dart';
+import 'package:condin/features/auth/view/register.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui'; // For ImageFilter
 
@@ -115,7 +116,7 @@ class Welcome extends StatelessWidget {
                                   shadowColor: Colors.transparent
                                 ),
                                 onPressed: () {
-                                  // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ));
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => Register()));
                                 },
                                 child: Text(
                                   "Criar conta",
