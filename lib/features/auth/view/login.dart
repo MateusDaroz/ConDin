@@ -1,5 +1,7 @@
 import 'package:condin/features/auth/view/register.dart';
+import 'package:condin/features/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -34,7 +36,7 @@ class _LoginState extends State<Login> {
       builder: (BuildContext context){
         return Container(
           height: 150,
-          color: Color.fromRGBO(248, 249, 250, 1),
+          color: Theme.of(context).colorScheme.surface,
           child: Center(
             child: Column(
               children: [
@@ -49,7 +51,7 @@ class _LoginState extends State<Login> {
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: Text(text, style: TextStyle(fontSize: 18, color: Color.fromRGBO(52, 58, 64, 1))),
+                  child: Text(text, style: TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.primary)),
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 15),
@@ -85,7 +87,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(248, 249, 250, 1),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -94,12 +96,12 @@ class _LoginState extends State<Login> {
               child: Column(
                 children: [
                   Image.asset("img/green_logo_text.png", width: 250,),
-                  const Text(
+                  Text(
                     'Bem-vindo(a) de volta',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(52, 58, 64, 1)
+                      color: Theme.of(context).colorScheme.primary
                     ),
                   ),
                   Form(
@@ -108,15 +110,15 @@ class _LoginState extends State<Login> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 32),
-                        Text("Email", style: TextStyle(fontSize: 16, color: Color.fromRGBO(52, 58, 64, 1)), textAlign: TextAlign.left,),
+                        Text("Email", style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.primary), textAlign: TextAlign.left,),
                         TextFormField(
                           controller: _emailController,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(Radius.circular(7))
                             ),
-                            fillColor: Color.fromRGBO(215, 215, 215, 1),
+                            fillColor: Theme.of(context).colorScheme.secondaryContainer,
                             filled: true
                           ),
                           keyboardType: TextInputType.emailAddress,
@@ -134,7 +136,7 @@ class _LoginState extends State<Login> {
                           },
                         ),
                         const SizedBox(height: 16),
-                        Text("Senha", style: TextStyle(fontSize: 16, color: Color.fromRGBO(52, 58, 64, 1)), textAlign: TextAlign.left,),
+                        Text("Senha", style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.primary), textAlign: TextAlign.left,),
                         TextFormField(
                           controller: _passwordController,
                           obscureText: _obscurePassword,
@@ -143,7 +145,7 @@ class _LoginState extends State<Login> {
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(Radius.circular(7))
                             ),
-                            fillColor: Color.fromRGBO(215, 215, 215, 1),
+                            fillColor: Theme.of(context).colorScheme.secondaryContainer,
                             filled: true,
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -179,7 +181,7 @@ class _LoginState extends State<Login> {
                                 });
                               },
                             ),
-                            const Text('Manter-me conectado', style: TextStyle(color: Color.fromRGBO(52, 58, 64, 1)),),
+                            Text('Manter-me conectado', style: TextStyle(color: Theme.of(context).colorScheme.primary),),
                           ],
                         ),
                         const SizedBox(height: 16),
@@ -208,7 +210,7 @@ class _LoginState extends State<Login> {
                         ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              
+                              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
                             });
                           },
                           style: ElevatedButton.styleFrom(

@@ -36,7 +36,7 @@ class _RegisterState extends State<Register> {
       builder: (BuildContext context){
         return Container(
           height: 150,
-          color: Color.fromRGBO(248, 249, 250, 1),
+          color: Theme.of(context).colorScheme.surface,
           child: Center(
             child: Column(
               children: [
@@ -51,7 +51,7 @@ class _RegisterState extends State<Register> {
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                  child: Text(text, style: TextStyle(fontSize: 18, color: Color.fromRGBO(52, 58, 64, 1))),
+                  child: Text(text, style: TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.primary)),
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 15),
@@ -87,7 +87,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(248, 249, 250, 1),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -96,12 +96,12 @@ class _RegisterState extends State<Register> {
               child: Column(
                 children: [
                   Image.asset("img/green_logo_text.png", width: 250,),
-                  const Text(
+                  Text(
                     'Seja bem-vindo(a)',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Color.fromRGBO(52, 58, 64, 1)
+                      color: Theme.of(context).colorScheme.primary
                     ),
                   ),
                   Form(
@@ -110,15 +110,15 @@ class _RegisterState extends State<Register> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 32),
-                        Text("Nome Completo", style: TextStyle(fontSize: 16, color: Color.fromRGBO(52, 58, 64, 1)), textAlign: TextAlign.left,),
+                        Text("Nome Completo", style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.primary), textAlign: TextAlign.left,),
                         TextFormField(
                           controller: _nameController,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(Radius.circular(7))
                             ),
-                            fillColor: Color.fromRGBO(215, 215, 215, 1),
+                            fillColor: Theme.of(context).colorScheme.secondaryContainer,
                             filled: true
                           ),
                           validator: (value) {
@@ -130,15 +130,15 @@ class _RegisterState extends State<Register> {
                           },
                         ),
                         const SizedBox(height: 16),
-                        Text("Email", style: TextStyle(fontSize: 16, color: Color.fromRGBO(52, 58, 64, 1)), textAlign: TextAlign.left,),
+                        Text("Email", style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.primary), textAlign: TextAlign.left,),
                         TextFormField(
                           controller: _emailController,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(Radius.circular(7))
                             ),
-                            fillColor: Color.fromRGBO(215, 215, 215, 1),
+                            fillColor: Theme.of(context).colorScheme.secondaryContainer,
                             filled: true
                           ),
                           keyboardType: TextInputType.emailAddress,
@@ -156,7 +156,7 @@ class _RegisterState extends State<Register> {
                           },
                         ),
                         const SizedBox(height: 16),
-                        Text("Senha", style: TextStyle(fontSize: 16, color: Color.fromRGBO(52, 58, 64, 1)), textAlign: TextAlign.left,),
+                        Text("Senha", style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.primary), textAlign: TextAlign.left,),
                         TextFormField(
                           controller: _passwordController,
                           obscureText: _obscurePassword,
@@ -165,7 +165,7 @@ class _RegisterState extends State<Register> {
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(Radius.circular(7))
                             ),
-                            fillColor: Color.fromRGBO(215, 215, 215, 1),
+                            fillColor: Theme.of(context).colorScheme.secondaryContainer,
                             filled: true,
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -190,7 +190,7 @@ class _RegisterState extends State<Register> {
                           },
                         ),
                         const SizedBox(height: 16),
-                        Text("Confirmar senha", style: TextStyle(fontSize: 16, color: Color.fromRGBO(52, 58, 64, 1)), textAlign: TextAlign.left,),
+                        Text("Confirmar senha", style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.primary), textAlign: TextAlign.left,),
                         TextFormField(
                           controller: _confirmPasswordController,
                           obscureText: _obscureConfirmPassword,
@@ -199,7 +199,7 @@ class _RegisterState extends State<Register> {
                               borderSide: BorderSide.none,
                               borderRadius: BorderRadius.all(Radius.circular(7))
                             ),
-                            fillColor: Color.fromRGBO(215, 215, 215, 1),
+                            fillColor: Theme.of(context).colorScheme.secondaryContainer,
                             filled: true,
                             suffixIcon: IconButton(
                               icon: Icon(
