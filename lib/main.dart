@@ -1,4 +1,5 @@
 import 'package:condin/features/auth/view/login.dart';
+import 'package:condin/features/auth/view/register.dart';
 import 'package:condin/features/auth/view/splashscreen.dart';
 import 'package:condin/features/auth/view/welcome.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(0, 200, 74, 1)),
       ),
       debugShowCheckedModeBanner: false,
-      home: Login()
+      home: Splashscreen()
     );
   }
 }
