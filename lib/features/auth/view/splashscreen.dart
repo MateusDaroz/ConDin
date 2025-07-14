@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:condin/auth/view/welcome.dart';
+import 'package:condin/features/auth/view/welcome.dart';
 import 'package:flutter/material.dart';
 
 class Splashscreen extends StatefulWidget {

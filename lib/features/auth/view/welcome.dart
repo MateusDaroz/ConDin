@@ -1,4 +1,4 @@
-import 'package:condin/auth/view/login.dart';
+import 'package:condin/features/auth/view/login.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui'; // For ImageFilter
 

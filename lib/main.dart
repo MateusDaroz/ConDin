@@ -1,6 +1,6 @@
-import 'package:condin/auth/view/login.dart';
-import 'package:condin/auth/view/splashscreen.dart';
-import 'package:condin/auth/view/welcome.dart';
+import 'package:condin/features/auth/view/login.dart';
+import 'package:condin/features/auth/view/splashscreen.dart';
+import 'package:condin/features/auth/view/welcome.dart';
 import 'package:flutter/material.dart';
 
 void main() {
