@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
       context: context, 
       builder: (BuildContext context){
         return Container(
-          height: 150,
+          height: 175,
           color: Theme.of(context).colorScheme.surface,
           child: Center(
             child: Column(
@@ -50,7 +50,7 @@ class _RegisterState extends State<Register> {
                   margin: EdgeInsets.only(top: 10),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  margin: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                   child: Text(text, style: TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.primary)),
                 ),
                 Container(
