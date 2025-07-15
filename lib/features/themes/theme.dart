@@ -12,8 +12,8 @@ ThemeData lightMode = ThemeData(
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   colorScheme: ColorScheme.dark(
-    surface: Color.fromRGBO(7, 6, 5, 1),
+    surface: Color.fromRGBO(37, 36, 35, 1),
     primary: Color.fromRGBO(203, 197, 191, 1),
-    secondaryContainer: Color.fromRGBO(40, 40, 40, 1)
+    secondaryContainer: Color.fromRGBO(50, 50, 50, 1)
   )
 );
