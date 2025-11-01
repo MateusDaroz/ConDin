@@ -1,17 +1,17 @@
-import 'package:condin/features/auth/view/login.dart';
-import 'package:condin/features/auth/view/register.dart';
-import 'package:condin/features/auth/view/splashscreen.dart';
-import 'package:condin/features/auth/view/welcome.dart';
+import 'package:condin/features/auth/view/pages/splashscreen.dart';
 import 'package:condin/features/themes/theme.dart';
 import 'package:condin/features/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' hide ChangeNotifierProvider, Provider;
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
-      child: const MyApp(),
+    ProviderScope(
+      child: ChangeNotifierProvider(
+        create: (context) => ThemeProvider(),
+        child: const MyApp(),
+      )
     )
   );
 }
