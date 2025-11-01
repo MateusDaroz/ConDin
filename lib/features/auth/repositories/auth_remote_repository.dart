@@ -21,7 +21,7 @@ class AuthRemoteRepository{
   }) async{
     try{
       final response = await http.post(
-        Uri.parse(""),
+        Uri.parse("http://localhost:3000/user/signup"),
         headers: {'Content-Type': 'application/json',},
         body: jsonEncode({
           'username': username,
@@ -31,7 +31,7 @@ class AuthRemoteRepository{
         ),
       );
       final resBodyMap = jsonDecode(response.body) as Map<String, dynamic>;
-      if(response.statusCode != 201){
+      if(response.statusCode != 200){
         return Left(FlutterError(resBodyMap['message']));
       }
       return Right(User.fromMap(resBodyMap));
