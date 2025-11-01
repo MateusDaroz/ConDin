@@ -1,4 +1,5 @@
 import 'package:condin/features/auth/view/pages/login.dart';
+import 'package:condin/features/auth/view/widgets/custom_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:condin/features/auth/viewmodel/auth_viewmodel.dart';
@@ -14,16 +15,22 @@ class _RegisterState extends ConsumerState<Register> {
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
-  final _nameController = TextEditingController();
+  final _usernameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  Color staticColorButton = Color.fromRGBO(0, 200, 74, 1);
+  Widget buttonChild = Text("Criar Conta", style: TextStyle(color: Colors.white, fontSize: 16),);
+  bool isHidden = true, isConfirmHidden = true;
+  bool isRegisterButtonEnabled = true;
   int _modalCounter = 0;
 
   @override
   void dispose() {
+    _usernameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -117,16 +124,16 @@ class _RegisterState extends ConsumerState<Register> {
             showDialog<void>(
               context: context,
               builder: (BuildContext context) {
-                //return CustomAlertDialog(title: title, content: content,);
+                return CustomAlertDialog(title: title, content: content,);
               },
             );
-            //staticColorButton = Color.fromRGBO(56, 127, 185, 0.750);
-            //buttonChild = Text("Criar Conta", style: TextStyle(color: Colors.white, fontSize: 16),);
-            //isRegisterButtonEnabled = true;
+            staticColorButton = Color.fromRGBO(0, 200, 74, 1);
+            buttonChild = Text("Criar Conta", style: TextStyle(color: Colors.white, fontSize: 16),);
+            isRegisterButtonEnabled = true;
             setState(() {});
           },
           loading: (){
-            //isRegisterButtonEnabled = false;
+            isRegisterButtonEnabled = false;
           }
         );
       }
@@ -158,7 +165,7 @@ class _RegisterState extends ConsumerState<Register> {
                         const SizedBox(height: 32),
                         Text("Nome Completo", style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.primary), textAlign: TextAlign.left,),
                         TextFormField(
-                          controller: _nameController,
+                          controller: _usernameController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide: BorderSide.none,
@@ -272,17 +279,25 @@ class _RegisterState extends ConsumerState<Register> {
                         const SizedBox(height: 16),
                         ElevatedButton(
                           onPressed: !isRegisterButtonEnabled ? null : () async {
-                            setState(() {
-                              _modalCounter=0;
-                              staticColorButton = Color.fromRGBO(31, 71, 104, 0.749);
-                              buttonChild = SizedBox(
-                                  width: 22,
-                                  height: 22.5,
-                                  child: CircularProgressIndicator.adaptive(strokeWidth: 3),
-                                );
-                            });
                             if (_formKey.currentState!.validate()) {
-                              
+                              setState(() {
+                                _modalCounter=0;
+                                staticColorButton = Color.fromRGBO(0, 155, 57, 1);
+                                buttonChild = SizedBox(
+                                    width: 22,
+                                    height: 22.5,
+                                    child: CircularProgressIndicator.adaptive(strokeWidth: 3),
+                                  );
+                              });
+                              if(_confirmPasswordController.text == _passwordController.text){
+                                await ref
+                                  .read(authViewModelProvider.notifier)
+                                    .signUpUser(
+                                      username: _usernameController.text, 
+                                      email: _emailController.text, 
+                                      password: _passwordController.text
+                                      );
+                                }
                             }
                             else{
                               showDialog<void>(
@@ -294,7 +309,7 @@ class _RegisterState extends ConsumerState<Register> {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(0, 200, 74, 1),
+                            backgroundColor: staticColorButton,
                             minimumSize: const Size(double.infinity, 50),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.all(
@@ -303,7 +318,7 @@ class _RegisterState extends ConsumerState<Register> {
                             ),
                             shadowColor: Colors.transparent
                           ),
-                          child: const Text('Entrar', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
+                          child: buttonChild
                         ),
                         const SizedBox(height: 8),
                       ],
