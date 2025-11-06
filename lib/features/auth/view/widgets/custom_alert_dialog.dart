@@ -10,13 +10,12 @@ class CustomAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: Color.fromRGBO(25, 24, 29, 1),
-      title: Text(title, style: TextStyle(color: Colors.white),),
-      content: Text(content, style: TextStyle(color: const Color.fromRGBO(255, 255, 255, .75)),),
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      title: Text(title, style: TextStyle(color: Color.fromRGBO(0, 200, 74, 1)),),
+      content: Text(content, style: TextStyle(color: Theme.of(context).colorScheme.primary),),
       actions: <Widget>[
         TextButton(
-          style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
-          child: Text('Entendi'),
+          child: Text('Entendi', style: TextStyle(color: Color.fromRGBO(0, 200, 74, 1)),),
           onPressed: () {
             Navigator.of(context).pop();
           },
