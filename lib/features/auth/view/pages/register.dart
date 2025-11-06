@@ -41,10 +41,12 @@ class _RegisterState extends ConsumerState<Register> {
     else {
       _modalCounter++;
       showModalBottomSheet(
+      isDismissible: false,
+      enableDrag: false,
       context: context, 
       builder: (BuildContext context){
         return Container(
-          height: 175,
+          height: 150,
           color: Theme.of(context).colorScheme.surface,
           child: Center(
             child: Column(
@@ -60,7 +62,7 @@ class _RegisterState extends ConsumerState<Register> {
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                  child: Text(text, style: TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.primary)),
+                  child: Text(text, style: TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.primary), textAlign: TextAlign.center,),
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 15),
@@ -105,9 +107,9 @@ class _RegisterState extends ConsumerState<Register> {
             showDialog<void>(
               context: context, 
               builder: (BuildContext context){
-                return AlertDialog(title: Text("sim"),);
+                return CustomAlertDialog(title: "Cadastro realizado com sucesso!", content: "Insira as informações da sua nova conta para fazer o login",);
               }
-            );
+            );  
           },
           error: (error, st){
             String title = '';
@@ -176,8 +178,7 @@ class _RegisterState extends ConsumerState<Register> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              showErrorModal('Erro de credenciais. O campo "Nome completo está vazio!');
-                              return null;
+                              showErrorModal('O campo "Nome Completo" está vazio!');
                             }
                             return null;
                           },
@@ -197,13 +198,13 @@ class _RegisterState extends ConsumerState<Register> {
                           keyboardType: TextInputType.emailAddress,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              showErrorModal('Erro de credenciais. O campo "Email" está vazio!');
-                              return null;
+                              showErrorModal('O campo "Email" está vazio!');
+                              return;
                             }
                             if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
                                 .hasMatch(value)) {
-                              showErrorModal('Erro de credenciais. O campo "Email" não possui um formato válido!');
-                              return null;
+                              showErrorModal('O campo "Email" não possui um formato válido!');
+                              return;
                             }
                             return null;
                           },
@@ -236,8 +237,8 @@ class _RegisterState extends ConsumerState<Register> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              showErrorModal('Erro de credenciais. O campo "Senha" está vazio!');
-                              return null;
+                              showErrorModal('O campo "Senha" está vazio!');
+                              return;
                             }
                             return null;
                           },
@@ -270,8 +271,8 @@ class _RegisterState extends ConsumerState<Register> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              showErrorModal('Erro de credenciais. O campo "Confirmar senha" está vazio!');
-                              return null;
+                              showErrorModal('O campo "Confirmar senha" está vazio!');
+                              return;
                             }
                             return null;
                           },
@@ -279,7 +280,7 @@ class _RegisterState extends ConsumerState<Register> {
                         const SizedBox(height: 16),
                         ElevatedButton(
                           onPressed: !isRegisterButtonEnabled ? null : () async {
-                            if (_formKey.currentState!.validate()) {
+                              if (_formKey.currentState!.validate() && _usernameController.text.isNotEmpty && _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty && _confirmPasswordController.text.isNotEmpty) {
                               setState(() {
                                 _modalCounter=0;
                                 staticColorButton = Color.fromRGBO(0, 155, 57, 1);
@@ -297,15 +298,19 @@ class _RegisterState extends ConsumerState<Register> {
                                       email: _emailController.text, 
                                       password: _passwordController.text
                                       );
-                                }
-                            }
-                            else{
+                              }
+                              else{
                               showDialog<void>(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return CustomAlertDialog(title: "Erro ao se Cadastrar", content: "As senhas não coincidem. Por favor, verifique as senhas e tente novamente",);
-                                },
-                              );
+                                  },
+                                );
+                                staticColorButton = Color.fromRGBO(0, 200, 74, 1);
+                                buttonChild = Text("Criar Conta", style: TextStyle(color: Colors.white, fontSize: 16),);
+                                isRegisterButtonEnabled = true;
+                                setState(() {});
+                              }
                             }
                           },
                           style: ElevatedButton.styleFrom(
